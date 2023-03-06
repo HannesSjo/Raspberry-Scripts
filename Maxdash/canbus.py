@@ -35,4 +35,7 @@ class canbus(QThread):
         return result
 
     def sendData(self, msg):
-        self.progress_update.emit(msg)
+        if(msg == None):
+            print("nothing")
+        else:
+            self.progress_update.emit(msg)
