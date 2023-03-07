@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 from canbus import canbus
@@ -16,10 +17,14 @@ class Main(QtWidgets.QMainWindow):
         self.thread.start()
 
     def exit(self):
+        os.system('sudo ifconfig can0 down')
         self.close()
     
-    def update(self, newText):
-        print(newText)
+    def update(self, msg):
+        self.RPMtxt.setText(str(msg[0]))
+        self.TPStxt.setText(str(msg[1]) + " %")
+        self.MAPtxt.setText(str(msg[2]) + " kpa")
+        self.AFRtxt.setText(str(msg[3]))
 
 
 
