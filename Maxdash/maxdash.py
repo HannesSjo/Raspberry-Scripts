@@ -23,27 +23,27 @@ class Main(QtWidgets.QMainWindow):
     def update(self):
         msg = self.thread.getData()
         if(msg["ERR"] != None):
-            self.ERRtxt.setText(str(msg["ERR"]))
+            self.ERRtxt.setText(str(round(msg["ERR"], 0)))
         if(msg["OilP"] != None):
-            self.OilPtxt.setText(str(msg["OilP"]) + " kpa")
+            self.OilPtxt.setText(str(round(msg["OilP"], 1)) + " kpa")
         if(msg["CT"] != None):
-            self.CTtxt.setText(str(msg["CT"]) + " °C")
+            self.CTtxt.setText(str(round(msg["CT"], 1)) + " °C")
         if(msg["MAP"] != None):
-            self.MAPtxt.setText(str(msg["MAP"]) + " kpa")
+            self.MAPtxt.setText(str(round(msg["MAP"], 1)) + " kpa")
         if(msg["RPM"] != None):
-            self.RPMtxt.setText(str(msg["RPM"]))
+            self.RPMtxt.setText(str(round(msg["RPM"], 0)))
         if(msg["OilT"] != None):
-            self.OilTtxt.setText(str(msg["OilT"]) + " °C")
+            self.OilTtxt.setText(str(round(msg["OilT"], 1)) + " °C")
         if(msg["AFR"] != None):
-            self.AFRtxt.setText(str(msg["AFR"]))
+            self.AFRtxt.setText(str(round(msg["AFR"], 2)))
         if(msg["V"] != None):
-            self.BVtxt.setText(str(msg["V"]) + " V")
+            self.BVtxt.setText(str(round(msg["V"], 2)) + " V")
         if(msg["IA"] != None):
-            self.IAtxt.setText(str(msg["IA"]) + " btd")
+            self.IAtxt.setText(str(round(msg["IA"], 1)) + " btdc")
         if(msg["IAT"] != None):
-            self.IATtxt.setText(str(msg["IAT"]) + " °C")
+            self.IATtxt.setText(str(round(msg["IAT"], 1)) + " °C")
         if(msg["TPS"] != None):
-            self.TPStxt.setText(str(msg["TPS"]) + " %")
+            self.TPStxt.setText(str(round(msg["TPS"], 1)) + " %")
         
 
 
