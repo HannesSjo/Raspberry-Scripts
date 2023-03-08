@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import pyautogui
 from canbus import canbus
 from PyQt5.QtCore import QThread
 from PyQt5 import QtWidgets, uic
@@ -11,6 +12,7 @@ class Main(QtWidgets.QMainWindow):
         super(Main, self).__init__()
         uic.loadUi('main.ui', self)
         self.showMaximized()
+        pyautogui.hotkey('alt', 'f11')
         self.Exit.clicked.connect(self.exit)
 
         self.thread.progress_update.connect(self.update)
