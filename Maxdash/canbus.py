@@ -35,6 +35,8 @@ class canbus(QThread):
             
             elif(res.arbitration_id == 0x521):
                 self.msg["IA"] = self.formatter(data[4], data[5])*0.1
+                if (self.msg["IA"] > 100):
+                    self.msg["IA"] =  self.msg["IA"] - 65535
             
             elif(res.arbitration_id == 0x530):
                 self.msg["V"] = self.formatter(data[0], data[1])*0.01
