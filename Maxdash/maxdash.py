@@ -10,6 +10,7 @@ class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         uic.loadUi('main.ui', self)
+        self.showMaximized()
         self.Exit.clicked.connect(self.exit)
 
         self.thread.progress_update.connect(self.update)
