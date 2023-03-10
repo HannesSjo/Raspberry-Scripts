@@ -9,7 +9,7 @@ class Main(QtWidgets.QMainWindow):
     thread = canbus()
     def __init__(self):
         super(Main, self).__init__()
-        uic.loadUi('main.ui', self)
+        uic.loadUi('/home/pi/Scripts/Raspberry-Scripts/Maxdash/main.ui', self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.showFullScreen()
         self.Exit.clicked.connect(self.exit)
