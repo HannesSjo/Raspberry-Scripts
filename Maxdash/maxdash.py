@@ -1,9 +1,8 @@
 import os
 import sys
 import time
-import pyautogui
 from canbus import canbus
-from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QThread, Qt
 from PyQt5 import QtWidgets, uic
 
 class Main(QtWidgets.QMainWindow):
@@ -11,8 +10,8 @@ class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         uic.loadUi('main.ui', self)
-        self.showMaximized()
-        pyautogui.hotkey('alt', 'f11')
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.showFullScreen()
         self.Exit.clicked.connect(self.exit)
 
         self.thread.progress_update.connect(self.update)
@@ -28,11 +27,11 @@ class Main(QtWidgets.QMainWindow):
         if(msg["ERR"] != None):
             self.ERRtxt.setText(str(round(msg["ERR"], 0)))
         if(msg["OilP"] != None):
-            self.OilPtxt.setText(str(round(msg["OilP"], 1)) + " kpa")
+            self.OilPtxt.setText(str(round(msg["OilP"], 1)) + " kPa")
         if(msg["CT"] != None):
             self.CTtxt.setText(str(round(msg["CT"], 1)) + " °C")
         if(msg["MAP"] != None):
-            self.MAPtxt.setText(str(round(msg["MAP"], 1)) + " kpa")
+            self.MAPtxt.setText(str(round(msg["MAP"], 1)) + " kPa")
         if(msg["RPM"] != None):
             self.RPMtxt.setText(str(round(msg["RPM"], 0)))
         if(msg["OilT"] != None):
@@ -41,8 +40,8 @@ class Main(QtWidgets.QMainWindow):
             self.AFRtxt.setText(str(round(msg["AFR"], 2)))
         if(msg["V"] != None):
             self.BVtxt.setText(str(round(msg["V"], 2)) + " V")
-        if(msg["IA"] != None):
-            self.IAtxt.setText(str(round(msg["IA"], 1)) + " btdc")
+        if(msg["BT"] != None):
+            self.BTtxt.setText(str(round(msg["BT"], 1)) + " kPa")
         if(msg["IAT"] != None):
             self.IATtxt.setText(str(round(msg["IAT"], 1)) + " °C")
         if(msg["TPS"] != None):

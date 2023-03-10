@@ -621,13 +621,13 @@
 }</string>
      </property>
      <property name="text">
-      <string>Ignition Angle</string>
+      <string>Boost Target</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="IAtxt">
+    <widget class="QLabel" name="BTtxt">
      <property name="geometry">
       <rect>
        <x>4</x>

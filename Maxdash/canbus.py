@@ -5,7 +5,7 @@ from PyQt5.QtCore import QThread, pyqtSignal
 
 class canbus(QThread):
     progress_update = pyqtSignal(int)
-    msg = {"RPM": None, "TPS": None, "MAP": None, "AFR": None, "IA": None, "V": None, "IAT": None, "CT": None, "ERR": None, "OilP": None, "OilT":None}
+    msg = {"RPM": None, "TPS": None, "MAP": None, "AFR": None, "BT": None, "V": None, "IAT": None, "CT": None, "ERR": None, "OilP": None, "OilT":None}
 
     def __init__(self):
         super().__init__()
@@ -14,7 +14,7 @@ class canbus(QThread):
     
     def run(self):
 
-        ids = [0x520, 0x521, 0x530, 0x534, 0x536]
+        ids = [0x520, 0x530, 0x534, 0x536, 0x537]
         i = 0
         while(True):
             can0 = can.interface.Bus(channel = 'can0', bustype = 'socketcan')
@@ -33,10 +33,8 @@ class canbus(QThread):
                 self.msg["MAP"] = self.formatter(data[4], data[5])*0.1
                 self.msg["AFR"] = (self.formatter(data[6], data[7])*0.001)* 14.7
             
-            elif(res.arbitration_id == 0x521):
-                self.msg["IA"] = self.formatter(data[4], data[5])*0.1
-                if (self.msg["IA"] > 100):
-                    self.msg["IA"] =  self.msg["IA"] - 65535
+            elif(res.arbitration_id == 0x537):
+                self.msg["BT"] = self.formatter(data[6], data[7])*0.1
             
             elif(res.arbitration_id == 0x530):
                 self.msg["V"] = self.formatter(data[0], data[1])*0.01
